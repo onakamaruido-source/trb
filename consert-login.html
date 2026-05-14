@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>consert</title>
+</head>
+<body>
+
+<script>
+async function sha256(text) {
+  const msgUint8 = new TextEncoder().encode(text);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+(async () => {
+  const savedHash = "	23e9e3b39c619131b068d424926e1b47e8ddaa1eaf641e9097f4b218ad2ca915";
+  const input = prompt("パスワードを入力してください");
+  const inputHash = await sha256(input);
+
+  if (inputHash === savedHash) {
+    window.location.href = "consert.html";
+  } else {
+    document.body.innerHTML = "<h1>アクセス拒否</h1>";
+  }
+})();
+</script>
+
+</body>
+</html>
