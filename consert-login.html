@@ -16,7 +16,7 @@ async function sha256(text) {
 }
 
 (async () => {
-  const savedHash = "	23e9e3b39c619131b068d424926e1b47e8ddaa1eaf641e9097f4b218ad2ca915";
+  const savedHash = "23e9e3b39c619131b068d424926e1b47e8ddaa1eaf641e9097f4b218ad2ca915";
   const input = prompt("パスワードを入力してください");
   const inputHash = await sha256(input);
 
